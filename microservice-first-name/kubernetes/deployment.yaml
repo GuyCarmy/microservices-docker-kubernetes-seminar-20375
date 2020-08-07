@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservice-first-name-deployment
+  labels:
+    app: microservice-first-name
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: microservice-first-name
+  template:
+    metadata:
+      labels:
+        app: microservice-first-name
+    spec:
+      containers:
+      - name: microservice-first-name
+        image: guycarmy/microservice-first-name:latest
+        imagePullPolicy: Always
+        env:
+        - name: MICROSERVICE_LAST_NAME_URL
+          value: http://microservice-last-name-service
+        ports:
+        - containerPort: 8090
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 100m
+            memory: 100Mi
+        livenessProbe:
+          httpGet:
+            path: /_alive
+            port: 8090
+        readinessProbe:
+          httpGet:
+            path: /_ready
+            port: 8090

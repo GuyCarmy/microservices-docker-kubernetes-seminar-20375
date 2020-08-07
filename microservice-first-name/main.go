@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"os"
 )
@@ -18,31 +19,37 @@ func main() {
 }
 
 func readinessHandler(w http.ResponseWriter, req *http.Request) {
-	fmt.Println("Handled readiness request")
+	fmt.Println("Handles readiness request")
 	fmt.Fprintln(w, "im ready")
 	return
 }
 
 func livenessHandler(w http.ResponseWriter, req *http.Request) {
-	fmt.Println("Handled liveness request")
+	fmt.Println("Handles liveness request")
 	fmt.Fprintln(w, "im alive")
 	return
 }
 
 func firstNameHandler(w http.ResponseWriter, req *http.Request) {
-	fmt.Println("Handled firstName request")
+	fmt.Println("Handles firstName request")
 	fmt.Fprintln(w, FIRST_NAME)
 	return
 }
 
 func fullNameHandler(w http.ResponseWriter, req *http.Request) {
-	fmt.Println("Handled fullName request")
-	last_name, err := http.Get(os.Getenv("MICROSERVICE_LAST_NAME"))
+	fmt.Println("Handles fullName request")
+	response, err := http.Get(os.Getenv("MICROSERVICE_LAST_NAME_URL"))
 	if err != nil {
 		fmt.Println("Existed full name handler with error ", err.Error())
 		http.Error(w, "full name handler failed", 500)
 		return
 	}
-	fmt.Fprintln(w, "My full name is ", FIRST_NAME, last_name)
+	last_name, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		fmt.Println("Existed full name handler with error ", err.Error())
+		http.Error(w, "full name handler failed", 500)
+		return
+	}
+	fmt.Fprintln(w, "My full name is", FIRST_NAME, string(last_name))
 	return
 }

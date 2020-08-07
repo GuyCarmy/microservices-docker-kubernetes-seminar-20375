@@ -21,4 +21,4 @@ def last_name():
 
 
 if __name__ == '__main__':
-    api.run(port=8091)
+    api.run(port=8091, host='0.0.0.0')

@@ -38,7 +38,8 @@ func firstNameHandler(w http.ResponseWriter, req *http.Request) {
 
 func fullNameHandler(w http.ResponseWriter, req *http.Request) {
 	fmt.Println("Handles fullName request")
-	response, err := http.Get(os.Getenv("MICROSERVICE_LAST_NAME_URL"))
+	get_last_name_url := os.Getenv("MICROSERVICE_LAST_NAME_URL") + "/get_last_name"
+	response, err := http.Get(get_last_name_url)
 	if err != nil {
 		fmt.Println("Existed full name handler with error ", err.Error())
 		http.Error(w, "full name handler failed", 500)

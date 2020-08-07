@@ -10,12 +10,12 @@ def readiness():
     return "OK"
 
 
-@api.route('/_alive', methods=['GET'])
+@api.route('/_alive')
 def liveness():
     return "OK"
 
 
-@api.route('/get_last_name', methods=['GET'])
+@api.route('/get_last_name')
 def last_name():
     return LAST_NAME
 

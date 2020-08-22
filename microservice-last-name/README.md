@@ -3,6 +3,7 @@ This microservice is in charge of handling my last name.
 ## Run
 ### locally
 ```
+pip install flask==1.1.2
 python main.py
 ```
 ### dockerized

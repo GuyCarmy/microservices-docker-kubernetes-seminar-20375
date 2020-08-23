@@ -18,7 +18,13 @@ python main.py
 ```
 docker run -p 8091:8091 guycarmy/microservice-last-name:latest
 ```
-## Test
+## Test - local or dockerized execution
 ```
 curl http://localhost:8091/get_last_name
+```
+## deploy to kubernetes
+```
+kubectl apply -f kubernetes/deployment.yaml
+kubectl apply -f kubernetes/service.yaml
+kubectl apply -f kubernetes/hpa.yaml
 ```

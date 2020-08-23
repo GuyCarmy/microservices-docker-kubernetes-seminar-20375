@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: microservice-last-name-deployment
   labels:
-    app: microservice-last-name
+    app.kubernetes.io/name: microservice-last-name
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: microservice-last-name
+      app.kubernetes.io/name: microservice-last-name
   template:
     metadata:
       labels:
-        app: microservice-last-name
+        app.kubernetes.io/name: microservice-last-name
     spec:
       containers:
       - name: microservice-last-name
@@ -20,7 +20,6 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8091
-          protocol: TCP
         resources:
           requests:
             cpu: 100m

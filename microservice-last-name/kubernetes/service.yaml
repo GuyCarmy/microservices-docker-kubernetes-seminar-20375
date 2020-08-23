@@ -4,7 +4,7 @@ metadata:
   name: microservice-last-name-service
 spec:
   selector:
-    app: microservice-last-name
+    app.kubernetes.io/name: microservice-last-name
   ports:
     - protocol: TCP
       port: 80

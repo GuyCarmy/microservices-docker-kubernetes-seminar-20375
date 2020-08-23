@@ -1,9 +1,17 @@
 # Microservice to handle my Last Name
 This microservice is in charge of handling my last name.
+## Preconditions
+### for local
+```
+pip install flask==1.1.2
+```
+### for docker
+```
+docker build -t "guycarmy/microservice-last-name" .
+```
 ## Run
 ### locally
 ```
-pip install flask==1.1.2
 python main.py
 ```
 ### dockerized

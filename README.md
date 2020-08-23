@@ -9,3 +9,14 @@ In this example we have 2 microservices, one written in Python and the other in 
 Each of the microservices have a dockerfile and some kuberentes configurations.
 
 The services expose an http API.
+
+## Run the entire system in a Docker network
+```
+docker network create "names-network"
+docker run --network "names-network" --name "ms-first-name" -d "guycarmy/microservice-first-name:latest"
+docker run --network "names-network" --name "ms-last-name" -d "guycarmy/microservice-last-name:latest"
+docker run --network "names-network" \
+           -e MICROSERVICE_FIRST_NAME_URL="http://ms-first-name:8090" \
+           -e MICROSERVICE_LAST_NAME_URL="http://ms-last-name:8091" \
+           "guycarmy/print-full-name:latest"
+```

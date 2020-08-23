@@ -1,5 +1,10 @@
 # Microservice to handle my First Name
 This microservice is in charge of handling my first name.
+## Preconditions
+### for docker
+```
+docker build -t "guycarmy/microservice-first-name" .
+```
 ## Run
 ### locally
 ```

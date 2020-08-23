@@ -18,9 +18,6 @@ spec:
       - name: microservice-first-name
         image: guycarmy/microservice-first-name:latest
         imagePullPolicy: Always
-        env:
-        - name: MICROSERVICE_LAST_NAME_URL
-          value: http://microservice-last-name-service
         ports:
         - containerPort: 8090
           protocol: TCP

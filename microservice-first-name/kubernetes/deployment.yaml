@@ -17,7 +17,6 @@ spec:
       containers:
       - name: microservice-first-name
         image: guycarmy/microservice-first-name:latest
-        imagePullPolicy: Always
         ports:
         - containerPort: 8090
         resources:

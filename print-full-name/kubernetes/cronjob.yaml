@@ -1,0 +1,19 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: print-full-name-cronjob
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: print-full-name
+            image: guycarmy/print-full-name:latest
+            env:
+            - name: MICROSERVICE_FIRST_NAME_URL
+              value: http://microservice-first-name-service
+            - name: MICROSERVICE_LAST_NAME_URL
+              value: http://microservice-last-name-service
+          restartPolicy: Never

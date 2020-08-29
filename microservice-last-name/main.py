@@ -7,12 +7,12 @@ LAST_NAME = "Carmy"
 
 @api.route('/_ready')
 def readiness():
-    return "OK"
+    return "im ready"
 
 
 @api.route('/_alive')
 def liveness():
-    return "OK"
+    return "im alive"
 
 
 @api.route('/get_last_name')
